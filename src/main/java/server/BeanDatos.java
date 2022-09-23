@@ -1,6 +1,7 @@
 package server;
 
 public class BeanDatos {
+    int id;
     String nombre;
     String apellido1;
     String apellido2;
@@ -23,13 +24,22 @@ public class BeanDatos {
     public BeanDatos() {
     }
 
-    public BeanDatos(String nombre, String apellido1, String apellido2, String curp, String fec_nac, String rfc) {
+    public BeanDatos(int id, String nombre, String apellido1, String apellido2, String curp, String fec_nac, String rfc) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.curp = curp;
         this.fec_nac = fec_nac;
         this.rfc = rfc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

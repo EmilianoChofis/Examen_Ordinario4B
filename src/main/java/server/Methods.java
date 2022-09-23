@@ -1,7 +1,7 @@
 package server;
 
 import java.util.List;
-import server.BeanDatos;
+
 public class Methods {
 
 
@@ -31,4 +31,13 @@ public class Methods {
         return dao.delete(curp);
     }
 
+    public BeanDatos existe(String curp) {
+        Dao dao = new Dao();
+        return dao.consulta(curp);
+    }
+
+    public boolean update(String nombre, String apellido1, String apellido2, String curp, String fec_nac, String rfc, int id) {
+        Dao dao = new Dao();
+        return dao.update(nombre, apellido1, apellido2, curp, fec_nac, rfc, id);
+    }
 }

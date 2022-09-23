@@ -43,6 +43,7 @@ public class Dao {
             pstm.setString(1,curp);
             ResultSet rs= pstm.executeQuery();
             while (rs.next()){
+                dato.setId(rs.getInt("id"));
                 dato.setNombre(rs.getString("nombre"));
                 dato.setApellido1(rs.getString("apellido1"));
                 dato.setApellido2(rs.getString("apellido2"));
@@ -98,5 +99,53 @@ public class Dao {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /*public BeanDatos existe(String curp) {
+        BeanDatos dato = new BeanDatos();
+        try(
+                Connection con = Conn.getConnection();
+                PreparedStatement pstm = con.prepareStatement("select * from datos where curp=?;");
+        ){
+            pstm.setString(1,curp);
+            ResultSet rs= pstm.executeQuery();
+            while (rs.next()){
+                dato.setId(rs.getInt("id"));
+                dato.setNombre(rs.getString("nombre"));
+                dato.setApellido1(rs.getString("apellido1"));
+                dato.setApellido2(rs.getString("apellido2"));
+                dato.setCurp(rs.getString("curp"));
+                dato.setFec_nac(rs.getString("fec_nac"));
+                dato.setRfc(rs.getString("rfc"));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return dato;
+    }*/
+
+    public boolean update(String nombre, String apellido1, String apellido2, String curp, String fec_nac, String rfc, int id) {
+            boolean result = false;
+            try(
+                    Connection con = Conn.getConnection();
+                    PreparedStatement pstm = con.prepareStatement("update datos set nombre=?, apellido1=?, apellido2=?, curp = ?, " +
+                            "fec_nac =?, rfc=? where id=?;")
+            ){
+                pstm.setString(1, nombre);
+                pstm.setString(2, apellido1);
+                pstm.setString(3, apellido2);
+                pstm.setString(4,curp);
+                pstm.setString(5, fec_nac);
+                pstm.setString(6, rfc);
+                pstm.setInt(7,id);
+
+
+
+                result = pstm.executeUpdate()==1;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return result;
     }
 }
