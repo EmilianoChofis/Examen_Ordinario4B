@@ -1,0 +1,3 @@
+create database examen4b;
+use examen4b;
+create table datos(id int primary key auto_increment, nombre varchar(50) not null, apellido1 varchar(50) not null, apellido2 varchar(50) not null, curp varchar(18) not null, fec_nac varchar(10),rfc varchar(13));
